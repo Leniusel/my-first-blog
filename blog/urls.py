@@ -1,4 +1,6 @@
-from django.urls import path
+from django.urls import path, include
+from django.contrib import admin
+from django.contrib.auth import views
 from . import views
 
 urlpatterns = [
@@ -8,4 +10,7 @@ urlpatterns = [
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
     path('drafts/', views.post_draft_list, name='post_draft_list'),
     path('post/<pk>/publish/', views.post_publish, name='post_publish'),
+    path('admin/', admin.site.urls),
+    path('accounts/login/', views.LoginView.as_view(), name='login'),
+    path('', include('blog.urls')),
 ]
